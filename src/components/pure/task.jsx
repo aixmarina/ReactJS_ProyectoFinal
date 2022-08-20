@@ -4,6 +4,7 @@ import { Task } from '../../models/task.class';
 
 //importamos la hoja de estilos de task.scss
 import '../../styles/task.scss'
+import { LEVELS } from '../../models/levels.enum';
 
 const TaskComponent = ({ task }) => {
 
@@ -14,22 +15,65 @@ const TaskComponent = ({ task }) => {
         };
     }, [task]);
 
+    //function that returns a Badge depending on the level of the task
+    function taskLevelBadge() {
+        switch (task.level) {
+            case LEVELS.NORMAL:
+                return (
+                    <h6 className='mb-0'>
+                        <span className='badge bg-primary'>
+                            {task.level}
+                        </span>
+                    </h6>)
+            case LEVELS.URGENT:
+                return (
+                    <h6 className='mb-0'>
+                        <span className='badge bg-warning'>
+                            {task.level}
+                        </span>
+                    </h6>)
+
+            case LEVELS.BLOCKING:
+                return (
+                    <h6 className='mb-0'>
+                        <span className='badge bg-danger'>
+                            {task.level}
+                        </span>
+                    </h6>)
+            default:
+                break;
+        }
+    }
+
+    // Function that returns icon depending on completion of the task
+    function taskIconCompleted() {
+        if (task.completed) {
+            return (<i className='bi-toggle-on' style={{ color: 'green' }}></i>)
+        } else {
+            return (<i className='bi-toggle-off' style={{ color: 'grey' }}></i>)
+        }
+    }
 
     return (
-        <div>
-            <h2 className='task-name'>
-                Name: {task.name}
-            </h2>
-            <h3>
-                Description: {task.description}
-            </h3>
-            <h4>
-                Level: {task.level}
-            </h4>
-            <h5>
-                This task is: {task.completed ? 'COMPLETED' : 'PENDING'}
-            </h5>
-        </div>
+
+        <tr className='fw-normal'>
+            <th>
+                <span className='ms-2'>{task.name}</span>
+            </th>
+            <td className='align-middle'>
+                <span>{task.description}</span>
+            </td>
+            <td className='align-middle'>
+                {/* Execution of functiono to return badge element */}
+                {taskLevelBadge()}
+            </td>
+            <td className='align-middle'>
+                {/* Execution of functiono to return icon depending on completion */}
+                {taskIconCompleted()}
+                <i className='bi-trash' style={{ color: 'tomato' }}></i>
+            </td>
+
+        </tr>
     );
 };
 
