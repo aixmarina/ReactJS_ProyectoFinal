@@ -11,6 +11,7 @@ import Ejemplo4 from './hooks/Ejemplo4';
 import GreetingStyled from './components/pure/greetingStyled';
 import Father from './components/container/father';
 import OptionalRender from './components/pure/optionalRender';
+import LoginFormik from './components/pure/forms/loginFormik';
 
 function App() {
   return (
@@ -44,8 +45,10 @@ function App() {
       {/* Ejemplos de Renderizado condicional */}
       {/* <OptionalRender></OptionalRender> */}
 
+      {/* Ejemplos de uso de Formik y Yup */}
+      <LoginFormik></LoginFormik>
       {/* PROYECTO FINAL */}
-      <TaskListComponent></TaskListComponent>
+      {/* <TaskListComponent></TaskListComponent> */}
 
     </div>
   );
