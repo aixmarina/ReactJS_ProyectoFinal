@@ -37,7 +37,8 @@ const LoginFormik = () => {
 
                 {/* We obtain props from Formik */}
 
-                {({ errors,
+                {({ values,
+                    errors,
                     touched,
                     isSubmitting,
                     handleChange,
@@ -72,12 +73,7 @@ const LoginFormik = () => {
                         <button type='submit'>Login</button>
                         {isSubmitting ? (<p>Login your credentials...</p>) : null}
                     </Form>
-
-                )
-                }
-
-
-
+                )}
             </Formik>
         </div>
     );
